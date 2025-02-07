@@ -31,12 +31,7 @@ function App() {
               </p>
               <img src='https://res.cloudinary.com/drvmk8gkm/image/upload/v1738911125/lbljo7tapuhorrzjyvzc.png' className='h-10 w-auto md:h-24'/>
             </div>
-            <a 
-              href="#register" 
-              className="bg-emerald-500 hover:bg-emerald-600 px-6 py-2 rounded-full font-semibold transition-colors"
-            >
-              Register Now
-            </a>
+        
           </div>
         </div>
       </header>
