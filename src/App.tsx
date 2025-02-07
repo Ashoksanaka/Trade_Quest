@@ -1,16 +1,10 @@
-import React from "react";
 import {
   TrendingUp,
   Calendar,
   Trophy,
-  Users,
   Scroll,
   Mail,
-  Twitter,
-  Linkedin,
-  Instagram,
   ExternalLink,
-  Boxes,
   Phone,
 } from "lucide-react";
 
