@@ -29,7 +29,7 @@ function App() {
               <p className="text-xs text-slate-400">
                 Powered by 
               </p>
-              <img src='../Copy of Group 43784 (1).png' className='h-10 w-auto md:h-24'/>
+              <img src='https://res.cloudinary.com/drvmk8gkm/image/upload/v1738911125/lbljo7tapuhorrzjyvzc.png' className='h-10 w-auto md:h-24'/>
             </div>
             <a 
               href="#register" 
