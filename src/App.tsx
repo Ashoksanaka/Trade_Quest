@@ -196,7 +196,7 @@ function App() {
       {/* Footer */}
       <footer className="bg-slate-900 py-12">
         <div className="container mx-auto px-4">
-          <div className="flex flex-row justify-around gap-8">
+          <div className="flex flex-col md:flex-row justify-around gap-8">
             <div>
               <h3 className="text-xl font-semibold mb-4">Organizers</h3>
               <ul className="text-slate-300 space-y-2">
