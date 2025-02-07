@@ -1,9 +1,9 @@
-import React from 'react';
-import { 
-  TrendingUp, 
-  Calendar, 
-  Trophy, 
-  Users, 
+import React from "react";
+import {
+  TrendingUp,
+  Calendar,
+  Trophy,
+  Users,
   Scroll,
   Mail,
   Twitter,
@@ -11,8 +11,8 @@ import {
   Instagram,
   ExternalLink,
   Boxes,
-  Phone
-} from 'lucide-react';
+  Phone,
+} from "lucide-react";
 
 function App() {
   return (
@@ -26,12 +26,12 @@ function App() {
           </div>
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2 pr-6 border-slate-700">
-              <p className="text-xs text-slate-400">
-                Powered by 
-              </p>
-              <img src='https://res.cloudinary.com/drvmk8gkm/image/upload/v1738911125/lbljo7tapuhorrzjyvzc.png' className='h-10 w-auto md:h-24'/>
+              <p className="text-xs text-slate-400">Powered by</p>
+              <img
+                src="https://res.cloudinary.com/drvmk8gkm/image/upload/v1738911125/lbljo7tapuhorrzjyvzc.png"
+                className="h-10 w-auto md:h-24"
+              />
             </div>
-        
           </div>
         </div>
       </header>
@@ -39,11 +39,19 @@ function App() {
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4">
         <div className="container mx-auto text-center">
+          <h1 className="text-5xl md:text-8xl mb-6">
+            <i className=" text-orange-600 font-serif font-bold">
+              Elektra 2025
+            </i>
+            <i className="text-xl">presents</i>
+          </h1>
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <span className="text-emerald-400">Trade</span> Quest 2025
+            <span className="text-emerald-400">Trade</span> Quest
           </h1>
           <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            The ultimate trading competition where strategy meets opportunity. <br/>Join elite traders in a battle of market mastery.
+            The ultimate trading competition where strategy meets opportunity.{" "}
+            <br />
+            Join elite traders in a battle of market mastery.
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-4 items-center mb-8">
             <div className="flex items-center gap-2">
@@ -62,30 +70,40 @@ function App() {
       {/* Event Overview */}
       <section className="py-20 bg-slate-800/50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">Event Overview</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center">
+            Event Overview
+          </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-slate-700/50 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4 text-emerald-400">About</h3>
+              <h3 className="text-xl font-semibold mb-4 text-emerald-400">
+                About
+              </h3>
               <p className="text-slate-300">
-                Trade Quest is a 5-days intensive trading competition designed to identify and reward the most skilled traders. Participants will engage in simulated market trading with real-time data and virtual capital.
+                Trade Quest is a 5-days intensive trading competition designed
+                to identify and reward the most skilled traders. Participants
+                will engage in simulated market trading with real-time data and
+                virtual capital.
               </p>
             </div>
             <div className="bg-slate-700/50 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4 text-emerald-400">Key Highlights</h3>
+              <h3 className="text-xl font-semibold mb-4 text-emerald-400">
+                Key Highlights
+              </h3>
               <ul className="text-slate-300 space-y-2">
-              <li>• mentorship sessions</li>
+                <li>• mentorship sessions</li>
                 <li>• Live market simulation</li>
                 <li>• Platform tokens for participants</li>
                 <li>• Real-time leaderboard</li>
-                
               </ul>
             </div>
             <div className="bg-slate-700/50 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4 text-emerald-400">Target Audience</h3>
+              <h3 className="text-xl font-semibold mb-4 text-emerald-400">
+                Target Audience
+              </h3>
               <ul className="text-slate-300 space-y-2">
-              <li>• Students</li>
+                <li>• Students</li>
                 <li>• Trading enthusiasts</li>
-                
+
                 <li>• Professional traders</li>
               </ul>
             </div>
@@ -101,7 +119,9 @@ function App() {
               <h2 className="text-3xl font-bold mb-8">Competition Rules</h2>
               <div className="space-y-4 text-slate-300">
                 <div className="bg-slate-700/50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-emerald-400">Eligibility</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-emerald-400">
+                    Eligibility
+                  </h3>
                   <ul className="space-y-2">
                     <li>1. Must be 18 years or older</li>
                     <li>2. Participant should belong to an educational body</li>
@@ -110,7 +130,9 @@ function App() {
                   </ul>
                 </div>
                 <div className="bg-slate-700/50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-emerald-400">Trading Rules</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-emerald-400">
+                    Trading Rules
+                  </h3>
                   <ul className="space-y-2">
                     <li>1. Initial virtual capital: ₹10,00,000</li>
                     <li>2. No leverage</li>
@@ -124,17 +146,21 @@ function App() {
               <h2 className="text-3xl font-bold mb-8">Guidelines</h2>
               <div className="space-y-4 text-slate-300">
                 <div className="bg-slate-700/50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-emerald-400">Process</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-emerald-400">
+                    Process
+                  </h3>
                   <ol className="space-y-2 list-decimal list-inside">
                     <li>Complete registration form</li>
-                    
+
                     <li>Attend orientation session</li>
                     <li>Get registered on the Stockgro</li>
                     <li>Begin trading on start date</li>
                   </ol>
                 </div>
                 <div className="bg-slate-700/50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-emerald-400">Evaluation</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-emerald-400">
+                    Evaluation
+                  </h3>
                   <ul className="space-y-2">
                     <li>• Highest return on investment</li>
                     <li>• Evaluation based on leaderboard</li>
@@ -179,16 +205,18 @@ function App() {
           <div className="max-w-2xl mx-auto bg-slate-700/50 p-8 rounded-lg">
             <p className="text-slate-300 mb-6">
               Don't miss your chance to compete with the best traders.
-              <br/>Registration closes on March 1, 2025.
+              <br />
+              Registration closes on March 1, 2025.
             </p>
-            <a 
-              href="https://forms.google.com/tradequest2025"
+            <a
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 px-8 py-3 rounded-full font-semibold text-lg transition-colors"
             >
               Register for Trade Quest <ExternalLink className="w-4 h-4" />
             </a>
+            <p className="text-red-700 pt-4 blink">Registration link will be active from February 10</p>
           </div>
         </div>
       </section>
@@ -198,26 +226,66 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-around gap-8">
             <div>
-              <h3 className="text-xl font-semibold mb-4">Organizers</h3>
+              <h3 className="text-xl font-semibold mb-4">
+                Student Co-ordinator
+              </h3>
               <ul className="text-slate-300 space-y-2">
-              <li>Dr.B.Jagadeesh - Convener(HOD, ECE)</li>
-              <li>Kiran Patrudu - Faculty Co-ordinator</li>
-                <li>S Ashok - Student Co-ordinator</li>
-                
+                <li>S Ashok</li>
+                <div>
+                  <ul className="text-slate-300 space-y-2">
+                    <li className="flex items-center gap-2">
+                      <Phone className="w-4 h-4" />
+                      +91 9705061057
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Mail className="w-4 h-4" />
+                      ashoksanaka9963@gmail.com
+                    </li>
+                  </ul>
+                </div>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">
+                Faculty Co-ordinator
+              </h3>
+              <ul className="text-slate-300 space-y-2">
+                <li>MR. B Kiran Patrudu</li>
                 
               </ul>
             </div>
+
             <div>
-              <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
+              <h3 className="text-xl font-semibold mb-4">
+                Co-Conveners
+              </h3>
               <ul className="text-slate-300 space-y-2">
-                <li className="flex items-center gap-2">
-                  <Mail className="w-4 h-4" />
-                  ashoksanaka9963@gmail.com
-                </li>
-                <li className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                 +91 9705061057
-                </li>
+                <li>Mr. A Siva Kumar</li>
+                <li>Mrs. Ch Anoosha</li>
+                <li>Mrs. M Nirmala</li>
+                <li>Dr. KVG Srinivas</li>
+    
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">
+                Convener
+              </h3>
+              <ul className="text-slate-300 space-y-2">
+                <li>Dr. B Jagadeesh</li>
+                <li>Prof. & HOD, ECE</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">
+                Honorary Convener
+              </h3>
+              <ul className="text-slate-300 space-y-2">
+                <li>Dr. K Sri Rama Krishna</li>
+                <li>Prof. & Principal, ANITS</li>
               </ul>
             </div>
             
