@@ -4,6 +4,7 @@ import {
   Trophy,
   Scroll,
   Mail,
+  IndianRupee,
   ExternalLink,
   Phone,
 } from "lucide-react";
@@ -47,10 +48,16 @@ function App() {
             <br />
             Join elite traders in a battle of market mastery.
           </p>
-          <div className="flex flex-col md:flex-row justify-center gap-4 items-center mb-8">
+                    <div className="flex flex-col md:flex-row justify-center gap-4 items-center mb-8">
             <div className="flex items-center gap-2">
               <Calendar className="text-emerald-400" />
               <span>March 03 to 07, 2025</span>
+            </div>
+            
+            <div className="hidden md:block w-2 h-2 bg-slate-600 rounded-full"></div>
+            <div className="flex items-center gap-2">
+            <IndianRupee className="text-emerald-400" />
+              <span>Registration Amount: 50 </span>
             </div>
             <div className="hidden md:block w-2 h-2 bg-slate-600 rounded-full"></div>
             <div className="flex items-center gap-2">
@@ -171,6 +178,7 @@ function App() {
       {/* Prizes */}
       <section className="py-20 bg-slate-800/50">
         <div className="container mx-auto px-4">
+        <p className="text-red-500 pt-2 blink text-lg text-center">Keep visiting the site for updated prize pool</p>
           <h2 className="text-3xl font-bold mb-12 text-center">Prize Pool</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="bg-gradient-to-b from-[#FFD700]/10 to-slate-700/50 p-6 rounded-lg text-center">
@@ -210,7 +218,7 @@ function App() {
             >
               Register for Trade Quest <ExternalLink className="w-4 h-4" />
             </a>
-            <p className="text-red-700 pt-4 blink">Registration link will be active from February 10</p>
+            <p className="text-red-500 pt-4 blink text-lg">Registration link will be active from February 10</p>
           </div>
         </div>
       </section>
@@ -245,7 +253,7 @@ function App() {
                 Faculty Co-ordinator
               </h3>
               <ul className="text-slate-300 space-y-2">
-                <li>MR. B Kiran Patrudu</li>
+                <li>Mr. B Kiran Patrudu</li>
                 
               </ul>
             </div>
@@ -269,7 +277,7 @@ function App() {
               </h3>
               <ul className="text-slate-300 space-y-2">
                 <li>Dr. B Jagadeesh</li>
-                <li>Prof. & HOD, ECE</li>
+                <li>(Prof. & HOD, ECE)</li>
               </ul>
             </div>
 
@@ -279,7 +287,7 @@ function App() {
               </h3>
               <ul className="text-slate-300 space-y-2">
                 <li>Dr. K Sri Rama Krishna</li>
-                <li>Prof. & Principal, ANITS</li>
+                <li>(Prof. & Principal, ANITS)</li>
               </ul>
             </div>
             
