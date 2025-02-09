@@ -211,14 +211,13 @@ function App() {
               Registration closes on March 1, 2025.
             </p>
             <a
-              href="#"
+              href="https://forms.gle/8dAYhyN7fKwcGK6C7"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 px-8 py-3 rounded-full font-semibold text-lg transition-colors"
             >
               Register for Trade Quest <ExternalLink className="w-4 h-4" />
             </a>
-            <p className="text-red-500 pt-4 blink text-lg">Registration link will be active from February 10</p>
           </div>
         </div>
       </section>
