@@ -65,6 +65,9 @@ function App() {
               <span>Registration Deadline: February 28, 2025</span>
             </div>
           </div>
+          <p className="animate-scroll text-red-800 text-xl font-semibold">
+              "Stop Risking; Your Future is worth more than a flip of a coin"
+            </p>
         </div>
       </section>
 
