@@ -211,7 +211,7 @@ function App() {
             <p className="text-slate-300 mb-6">
               Don't miss your chance to compete with the best traders.
               <br />
-              Registration closes on March 1, 2025.
+              Registration closes on February 28, 2025.
             </p>
             <a
               href="https://forms.gle/8dAYhyN7fKwcGK6C7"
@@ -256,6 +256,7 @@ function App() {
               </h3>
               <ul className="text-slate-300 space-y-2">
                 <li>Mr. B Kiran Patrudu</li>
+                <li>Dr. J Bhaskar rao</li>
                 
               </ul>
             </div>
