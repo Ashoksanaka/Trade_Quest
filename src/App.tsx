@@ -51,7 +51,7 @@ function App() {
                     <div className="flex flex-col md:flex-row justify-center gap-4 items-center mb-8">
             <div className="flex items-center gap-2">
               <Calendar className="text-emerald-400" />
-              <span>March 03 to 07, 2025</span>
+              <span>March 03 to 06, 2025</span>
             </div>
             
             <div className="hidden md:block w-2 h-2 bg-slate-600 rounded-full"></div>
