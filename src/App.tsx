@@ -51,7 +51,7 @@ function App() {
                     <div className="flex flex-col md:flex-row justify-center gap-4 items-center mb-8">
             <div className="flex items-center gap-2">
               <Calendar className="text-emerald-400" />
-              <span>March 03 to 06, 2025</span>
+              <span>Event dates: March 03 to 06, 2025</span>
             </div>
             
             <div className="hidden md:block w-2 h-2 bg-slate-600 rounded-full"></div>
@@ -63,7 +63,6 @@ function App() {
             <div className="flex items-center gap-2">
               <Scroll className="text-emerald-400" />
               <span>Registration Deadline: February 28, 2025</span>
-              <span>Registration Deadline: February 24, 2025</span>
             </div>
           </div>
           <p className="animate-scroll text-red-800 text-xl font-semibold">
