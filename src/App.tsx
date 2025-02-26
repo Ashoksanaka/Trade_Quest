@@ -62,7 +62,7 @@ function App() {
             <div className="hidden md:block w-2 h-2 bg-slate-600 rounded-full"></div>
             <div className="flex items-center gap-2">
               <Scroll className="text-emerald-400" />
-              <span>Registration Deadline: February 22, 2025</span>
+              <span>Registration Deadline: February 28, 2025</span>
             </div>
           </div>
           <p className="animate-scroll text-red-800 text-xl font-semibold">
