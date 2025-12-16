@@ -35,7 +35,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000); // Show loader for 1 second
+    }, 4000); // Show loader for 4 second
 
     return () => clearTimeout(timer);
   }, []);
