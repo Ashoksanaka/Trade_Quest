@@ -386,7 +386,7 @@ function App() {
             <div className="hidden sm:block w-2 h-2 bg-slate-600 rounded-full"></div>
             <div className="flex items-center gap-2 text-sm sm:text-base">
               <Scroll className="text-emerald-400 w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="text-center">Registration Deadline: Jan 4, 2026</span>
+              <span className="text-center">Registration Deadline: Jan 4, 9:00 PM</span>
             </div>
           </div>
           <p className="animate-scroll text-red-800 text-base sm:text-lg md:text-xl font-semibold mb-6 sm:mb-8 px-4">
@@ -645,7 +645,7 @@ function App() {
                   type="text"
                   id="instituteName"
                   name="instituteName"
-                  placeholder="Institute Name (FullName), city"
+                  placeholder="Institute Name, city"
                   value={formData.instituteName}
                   onChange={handleInputChange}
                   className="w-full px-3 sm:px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm sm:text-base"
@@ -660,7 +660,7 @@ function App() {
                   type="text"
                   id="department"
                   name="department"
-                  placeholder="Department (Full Name)"
+                  placeholder="Department"
                   value={formData.department}
                   onChange={handleInputChange}
                   className="w-full px-3 sm:px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm sm:text-base"
