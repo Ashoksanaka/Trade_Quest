@@ -10,6 +10,8 @@ import {
   Check,
   Upload,
   Users,
+  Phone,
+  Mail,
 } from "lucide-react";
 import Admin from "./Admin";
 
@@ -947,6 +949,83 @@ function App() {
               </ul>
             </div>
             
+          </div>
+          
+          {/* Contact Details Section */}
+          <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-slate-700">
+            <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center text-emerald-400">
+              Contact Us for Queries
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+              {/* Sai Vikash */}
+              <div className="bg-slate-800/50 p-4 sm:p-6 rounded-lg border border-slate-700 hover:border-emerald-500/50 transition-colors">
+                <h4 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-emerald-400">
+                  Ch Sai Vikash
+                </h4>
+                <div className="space-y-2 sm:space-y-3">
+                  <a
+                    href="tel:+919390446372"
+                    className="flex items-center gap-2 text-slate-300 hover:text-emerald-400 transition-colors text-sm sm:text-base"
+                  >
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span>+91 9390446372</span>
+                  </a>
+                  <a
+                    href="mailto:chinnarisaivikash.24.ece@anits.edu.in"
+                    className="flex items-center gap-2 text-slate-300 hover:text-emerald-400 transition-colors text-sm sm:text-base break-all"
+                  >
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span className="break-all">chinnarisaivikash.24.ece@anits.edu.in</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* T Nihal */}
+              <div className="bg-slate-800/50 p-4 sm:p-6 rounded-lg border border-slate-700 hover:border-emerald-500/50 transition-colors">
+                <h4 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-emerald-400">
+                  T Nihal
+                </h4>
+                <div className="space-y-2 sm:space-y-3">
+                  <a
+                    href="tel:+917799558819"
+                    className="flex items-center gap-2 text-slate-300 hover:text-emerald-400 transition-colors text-sm sm:text-base"
+                  >
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span>+91 7799558819</span>
+                  </a>
+                  <a
+                    href="mailto:thotanihal.24.ece@anits.edu.in"
+                    className="flex items-center gap-2 text-slate-300 hover:text-emerald-400 transition-colors text-sm sm:text-base break-all"
+                  >
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span className="break-all">thotanihal.24.ece@anits.edu.in</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* M Pavan */}
+              <div className="bg-slate-800/50 p-4 sm:p-6 rounded-lg border border-slate-700 hover:border-emerald-500/50 transition-colors">
+                <h4 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-emerald-400">
+                  M Pavan Kumar
+                </h4>
+                <div className="space-y-2 sm:space-y-3">
+                  <a
+                    href="tel:+919704242378"
+                    className="flex items-center gap-2 text-slate-300 hover:text-emerald-400 transition-colors text-sm sm:text-base"
+                  >
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span>+91 9704242378</span>
+                  </a>
+                  <a
+                    href="mailto:madinapavankumar.24.ece@anits.edu.in"
+                    className="flex items-center gap-2 text-slate-300 hover:text-emerald-400 transition-colors text-sm sm:text-base break-all"
+                  >
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span className="break-all">madinapavankumar.24.ece@anits.edu.in</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
