@@ -1051,7 +1051,8 @@ function App() {
       {/* Footer */}
       <footer className="bg-slate-900 py-8 sm:py-10 md:py-12">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8">
+          {/* Commented out footer grid section */}
+          {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8">
             <div>
               <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">
                 Student Co-ordinators
@@ -1121,7 +1122,7 @@ function App() {
               </ul>
             </div>
             
-          </div>
+          </div> */}
           
           {/* Contact Details Section */}
           <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-slate-700">
