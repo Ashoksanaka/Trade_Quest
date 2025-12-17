@@ -50,7 +50,7 @@ function App() {
   const [showCongratulations, setShowCongratulations] = useState(false);
 
   // Replace this URL with your Google Apps Script Web App URL
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwQJElgoN-tykJfQIn41mPx0MaMY_kRlO1M6NIHtzTrPBcsahFet_hcBln9nN48Kt3Nnw/exec";
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzoW8AVgnoEjB0_I7pi9gsPSKPKVlvj0wJ6XsjvlcISqen32MVObA9BXnzXoflg4EYS/exec";
   
   // Receiver UPI ID - Replace with your actual UPI ID
   const RECEIVER_UPI_ID = "9381870576@ybl"; // e.g., "yourname@paytm" or "yourname@ybl"
