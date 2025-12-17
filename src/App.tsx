@@ -9,27 +9,15 @@ import {
   Copy,
   Check,
   Upload,
-  Users,
   Phone,
   Mail,
+  FileText,
+  PartyPopper,
+  Sparkles,
 } from "lucide-react";
-import Admin from "./Admin";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isAdminRoute, setIsAdminRoute] = useState(
-    window.location.hash === "#aerospace" || window.location.pathname === "/aerospace"
-  );
-
-  // Listen for hash changes (for SPA routing)
-  useEffect(() => {
-    const handleHashChange = () => {
-      setIsAdminRoute(window.location.hash === "#aerospace" || window.location.pathname === "/aerospace");
-    };
-
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
 
   // Hide loader after component mounts
   useEffect(() => {
@@ -54,30 +42,21 @@ function App() {
   const [screenshotPreview, setScreenshotPreview] = useState<string | null>(null);
   const [upiCopied, setUpiCopied] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<"transactionId" | "screenshot" | null>(null);
-  const [registrationCount, setRegistrationCount] = useState<number>(0);
+  const [stepsAcknowledged, setStepsAcknowledged] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [paymentProofSubmitted, setPaymentProofSubmitted] = useState(false);
+  const [showStockgroSection, setShowStockgroSection] = useState(false);
+  const [allStepsCompleted, setAllStepsCompleted] = useState(false);
+  const [showCongratulations, setShowCongratulations] = useState(false);
 
   // Replace this URL with your Google Apps Script Web App URL
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwQJElgoN-tykJfQIn41mPx0MaMY_kRlO1M6NIHtzTrPBcsahFet_hcBln9nN48Kt3Nnw/exec";
   
   // Receiver UPI ID - Replace with your actual UPI ID
-  const RECEIVER_UPI_ID = "YOUR_UPI_ID@paytm"; // e.g., "yourname@paytm" or "yourname@ybl"
+  const RECEIVER_UPI_ID = "9381870576@ybl"; // e.g., "yourname@paytm" or "yourname@ybl"
   
   // Registration amount
-  const REGISTRATION_AMOUNT = "50";
-
-  // Load registration count from localStorage on mount
-  useEffect(() => {
-    const savedCount = localStorage.getItem('tradeQuestRegistrationCount');
-    if (savedCount) {
-      setRegistrationCount(parseInt(savedCount, 10));
-    }
-  }, []);
-
-  // Function to reset registration count (only accessible from admin page)
-  const resetRegistrationCount = () => {
-    setRegistrationCount(0);
-    localStorage.removeItem('tradeQuestRegistrationCount');
-  };
+  const REGISTRATION_AMOUNT = "40";
 
   // Render loader
   if (isLoading) {
@@ -104,15 +83,24 @@ function App() {
     );
   }
 
-  // Render admin page if on admin route
-  if (isAdminRoute) {
-    return <Admin onReset={resetRegistrationCount} currentCount={registrationCount} />;
-  }
-
   // Validate phone number (exactly 10 digits, no special characters)
   const validatePhoneNumber = (phone: string): boolean => {
     const digitsOnly = /^[0-9]+$/;
     return phone.length === 10 && digitsOnly.test(phone);
+  };
+
+  // Check if form is complete and valid
+  const isFormValid = (): boolean => {
+    return (
+      formData.fullName.trim() !== "" &&
+      formData.mobileNumber.trim() !== "" &&
+      formData.whatsappNumber.trim() !== "" &&
+      formData.studentEmail.trim() !== "" &&
+      formData.instituteName.trim() !== "" &&
+      formData.department.trim() !== "" &&
+      validatePhoneNumber(formData.mobileNumber) &&
+      validatePhoneNumber(formData.whatsappNumber)
+    );
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -228,25 +216,14 @@ function App() {
     const result = await response.json();
 
     if (result.result === "success") {
-      alert("Registration submitted successfully!");
+      alert("Payment proof submitted successfully!");
       
-      // Increment registration count locally based on successful submission
-      setRegistrationCount((prev) => {
-        const newCount = prev + 1;
-        // Save to localStorage for persistence across page refreshes
-        localStorage.setItem('tradeQuestRegistrationCount', newCount.toString());
-        return newCount;
-      });
+      // Set payment proof submitted state and automatically show Stockgro section
+      setPaymentProofSubmitted(true);
+      setShowStockgroSection(true);
       
-      // Reset the form
-      setFormData({
-        fullName: "",
-        mobileNumber: "",
-        whatsappNumber: "",
-        studentEmail: "",
-        instituteName: "",
-        department: "",
-      });
+      // Hide form and payment section
+      setShowForm(false);
       setShowPaymentSection(false);
       setTransactionId("");
       setPaymentScreenshot(null);
@@ -332,9 +309,77 @@ function App() {
     }
   };
 
-  const whatsappGroupLink = "https://whatsapp.com/channel/0029VbByYOFLY6d6EthFt106"; // Replace with actual WhatsApp group invite link
+  const whatsappGroupLink = "https://whatsapp.com/channel/0029VbBeVuvGk1FpQW68vh2Q";
+  // Stockgro URLs - Replace with actual URLs
+  const STOCKGRO_EVENT_REGISTRATION_URL = "https://community.stockgro.club/form/900e8368-1979-4daa-a8ff-c9b8dff96289";
+  const STOCKGRO_APP_INSTALLATION_URL = "https://stockgro.onelink.me/vNON/21jikjek";
+
+  // Handle completion of registration
+  const handleCompleteRegistration = () => {
+    setShowCongratulations(true);
+    // Scroll to top of page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Reset all states after showing congratulations
+    setTimeout(() => {
+      setShowCongratulations(false);
+      setAllStepsCompleted(false);
+      setPaymentProofSubmitted(false);
+      setShowStockgroSection(false);
+      setShowForm(false);
+      setStepsAcknowledged(false);
+      setFormData({
+        fullName: "",
+        mobileNumber: "",
+        whatsappNumber: "",
+        studentEmail: "",
+        instituteName: "",
+        department: "",
+      });
+    }, 5000); // Show congratulations for 5 seconds
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 text-white">
+      {/* Congratulations Modal */}
+      {showCongratulations && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fadeIn">
+          <div className="bg-gradient-to-br from-emerald-500/20 via-slate-800 to-slate-900 border-2 border-emerald-500/50 rounded-2xl p-8 sm:p-12 max-w-md mx-4 shadow-2xl animate-scaleIn">
+            <div className="text-center">
+              {/* Animated Icons */}
+              <div className="relative mb-6 flex justify-center">
+                <PartyPopper className="w-16 h-16 sm:w-20 sm:h-20 text-emerald-400 animate-bounce" />
+                <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-yellow-400 absolute -top-2 -right-2 animate-pulse" style={{ animationDelay: '0.2s' }} />
+                <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400 absolute -bottom-1 -left-1 animate-pulse" style={{ animationDelay: '0.4s' }} />
+              </div>
+              
+              <h2 className="text-3xl sm:text-4xl font-bold text-emerald-400 mb-4 animate-fadeInUp">
+                Congratulations!
+              </h2>
+              <p className="text-lg sm:text-xl text-slate-300 mb-2 animate-fadeInUp" style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}>
+                Your registration is complete!
+              </p>
+              <p className="text-sm sm:text-base text-slate-400 mb-6 animate-fadeInUp" style={{ animationDelay: '0.3s', opacity: 0, animationFillMode: 'forwards' }}>
+                Thank you for registering for Trade Quest. We look forward to seeing you compete!
+              </p>
+              
+              {/* Confetti Animation */}
+              <div className="flex justify-center gap-2 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="w-2 h-2 rounded-full bg-emerald-400 animate-bounce"
+                    style={{
+                      animationDelay: `${i * 0.1}s`,
+                      animationDuration: '1s',
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <header className="bg-slate-900/50 backdrop-blur-sm fixed w-full z-50">
         <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex justify-between items-center">
@@ -381,7 +426,7 @@ function App() {
             <div className="hidden sm:block w-2 h-2 bg-slate-600 rounded-full"></div>
             <div className="flex items-center gap-2 text-sm sm:text-base">
             <IndianRupee className="text-emerald-400 w-4 h-4 sm:w-5 sm:h-5" />
-              <span>Registration Amount: 50 </span>
+              <span>Registration Amount: 40 </span>
             </div>
             <div className="hidden sm:block w-2 h-2 bg-slate-600 rounded-full"></div>
             <div className="flex items-center gap-2 text-sm sm:text-base">
@@ -392,21 +437,6 @@ function App() {
           <p className="animate-scroll text-red-800 text-base sm:text-lg md:text-xl font-semibold mb-6 sm:mb-8 px-4">
               "Stop Risking; Your Future is worth more than a flip of a coin"
             </p>
-          
-          {/* Registration Counter */}
-          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4 sm:p-6 max-w-md mx-auto">
-            <div className="flex items-center justify-center gap-2 sm:gap-3">
-              <Users className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-400" />
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-emerald-400">
-                  {registrationCount.toLocaleString()}
-                </div>
-                <div className="text-xs sm:text-sm text-slate-300 mt-1">
-                  {registrationCount === 1 ? "Registration Completed" : "Registrations Completed"}
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -541,7 +571,82 @@ function App() {
               <br className="hidden sm:block" />
               Registration closes on January 04, 2026.
             </p>
-            {!showPaymentSection ? (
+            
+            {!showForm && !paymentProofSubmitted && !showStockgroSection ? (
+              <div className="space-y-6 text-left">
+                <div className="bg-slate-800/50 rounded-lg p-4 sm:p-6 border border-slate-600">
+                  <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 text-emerald-400 flex items-center gap-2">
+                    <FileText className="w-5 h-5 sm:w-6 sm:h-6" />
+                    Registration Steps
+                  </h3>
+                  <ol className="space-y-3 sm:space-y-4 text-slate-300">
+                    <li className="flex items-start gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-semibold text-sm sm:text-base mt-0.5">
+                        1
+                      </span>
+                      <span className="text-sm sm:text-base">Fill participant information</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-semibold text-sm sm:text-base mt-0.5">
+                        2
+                      </span>
+                      <span className="text-sm sm:text-base">Complete the payment and submit proof</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-semibold text-sm sm:text-base mt-0.5">
+                        3
+                      </span>
+                      <span className="text-sm sm:text-base">Register for the event on our partnered platform</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-semibold text-sm sm:text-base mt-0.5">
+                        4
+                      </span>
+                      <span className="text-sm sm:text-base">Install Stockgro application (Not applicable to PC/Desktop users)</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-semibold text-sm sm:text-base mt-0.5">
+                        5
+                      </span>
+                      <span className="text-sm sm:text-base">Join our WhatsApp channel for latest updates</span>
+                    </li>
+                  </ol>
+                </div>
+                
+                <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4 sm:p-6">
+                  <label className="flex items-start gap-3 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      checked={stepsAcknowledged}
+                      onChange={(e) => {
+                        setStepsAcknowledged(e.target.checked);
+                        if (!e.target.checked) {
+                          setShowForm(false);
+                          setPaymentProofSubmitted(false);
+                          setShowStockgroSection(false);
+                        }
+                      }}
+                      className="mt-1 w-5 h-5 sm:w-6 sm:h-6 text-emerald-500 bg-slate-800 border-slate-600 rounded focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-slate-800 cursor-pointer"
+                    />
+                    <span className="text-sm sm:text-base text-slate-300 group-hover:text-white transition-colors">
+                      I have read and understood all the registration steps clearly.
+                    </span>
+                  </label>
+                </div>
+                
+                {stepsAcknowledged && (
+                  <div className="pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setShowForm(true)}
+                      className="w-full inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-base sm:text-lg transition-colors"
+                    >
+                      Continue to Register
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : showForm && !showPaymentSection && !paymentProofSubmitted ? (
               <form onSubmit={handleFormSubmit} className="space-y-4 text-left">
               <div>
                 <label htmlFor="fullName" className="block text-xs sm:text-sm font-medium text-slate-300 mb-1.5 sm:mb-2">
@@ -670,14 +775,14 @@ function App() {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 disabled:bg-emerald-600 disabled:opacity-70 disabled:cursor-not-allowed px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-base sm:text-lg transition-colors"
+                    disabled={isSubmitting || !isFormValid()}
+                    className="w-full inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 disabled:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-base sm:text-lg transition-colors"
                   >
                     Continue to Payment
                   </button>
                 </div>
               </form>
-            ) : (
+            ) : showPaymentSection && !paymentProofSubmitted ? (
               <div className="space-y-4 text-left">
                 {/* Receiver UPI ID Display */}
                 <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
@@ -860,18 +965,85 @@ function App() {
                   </div>
                 </form>
               </div>
+            ) : null}
+
+            {paymentProofSubmitted && (
+              <div className="mt-6 pt-6 border-t border-slate-600">
+                <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4 sm:p-6 mb-4">
+                  <h3 className="text-lg sm:text-xl font-semibold text-emerald-400 mb-2 text-center">
+                    Complete Your Registration
+                  </h3>
+                  <p className="text-slate-300 text-sm sm:text-base text-center mb-6">
+                    Please complete the following steps to finalize your registration:
+                  </p>
+                </div>
+                
+                <div className="space-y-3 sm:space-y-4">
+                  {/* Stockgro Event Registration */}
+                  <a
+                    href={STOCKGRO_EVENT_REGISTRATION_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-base sm:text-lg transition-colors"
+                  >
+                    <Scroll className="w-5 h-5" />
+                    Stockgro Event Registration
+                  </a>
+
+                  {/* Stockgro App Installation */}
+                  <a
+                    href={STOCKGRO_APP_INSTALLATION_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-base sm:text-lg transition-colors"
+                  >
+                    <Upload className="w-5 h-5" />
+                    Stockgro App Installation
+                  </a>
+
+                  {/* WhatsApp Channel Link */}
+                  <a
+                    href={whatsappGroupLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BA5A] px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-base sm:text-lg transition-colors"
+                  >
+                    <MessageCircle className="w-5 h-5" />
+                    Join WhatsApp Channel
+                  </a>
+                </div>
+
+                {/* Final Acknowledgment Checkbox */}
+                <div className="mt-6 pt-6 border-t border-slate-600">
+                  <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4 sm:p-6">
+                    <label className="flex items-start gap-3 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={allStepsCompleted}
+                        onChange={(e) => setAllStepsCompleted(e.target.checked)}
+                        className="mt-1 w-5 h-5 sm:w-6 sm:h-6 text-emerald-500 bg-slate-800 border-slate-600 rounded focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-slate-800 cursor-pointer"
+                      />
+                      <span className="text-sm sm:text-base text-slate-300 group-hover:text-white transition-colors">
+                        I have completed all the registration steps including Stockgro registration, app installation, and joining the WhatsApp channel.
+                      </span>
+                    </label>
+                  </div>
+
+                  {allStepsCompleted && (
+                    <div className="mt-4">
+                      <button
+                        type="button"
+                        onClick={handleCompleteRegistration}
+                        className="w-full inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-base sm:text-lg transition-colors"
+                      >
+                        <Check className="w-5 h-5" />
+                        Complete Registration
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
             )}
-            <div className="mt-6 pt-6 border-t border-slate-600">
-              <a
-                href={whatsappGroupLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BA5A] px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-base sm:text-lg transition-colors"
-              >
-                <MessageCircle className="w-5 h-5" />
-                Join WhatsApp Channel
-              </a>
-            </div>
           </div>
         </div>
       </section>
