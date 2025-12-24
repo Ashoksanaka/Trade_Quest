@@ -53,7 +53,7 @@ function App() {
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzoW8AVgnoEjB0_I7pi9gsPSKPKVlvj0wJ6XsjvlcISqen32MVObA9BXnzXoflg4EYS/exec";
   
   // Receiver UPI ID - Replace with your actual UPI ID
-  const RECEIVER_UPI_ID = "9381870576@ybl"; // e.g., "yourname@paytm" or "yourname@ybl"
+  const RECEIVER_UPI_ID = "7032792359@axl"; // e.g., "yourname@paytm" or "yourname@ybl"
   
   // Registration amount
   const REGISTRATION_AMOUNT = "40";
